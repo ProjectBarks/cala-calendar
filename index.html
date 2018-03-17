@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Title</title>
+
+    <link rel='stylesheet' type='text/css' href='calendar.css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
+    <script src='calendar.js'></script>
+</head>
+<body>
+    <div id='container'>
+        <button id='left' class='btn-circle'>«</button>
+        <h2 id='date'>March 2018</h2>
+        <div id='calendar'></div>
+        <button id='right' class='btn-circle'>»</button>
+    </div>
+</body>
+<script>
+    const MONTH_NAMES = [
+        'January', 'February', 'March',
+        'April', 'May', 'June', 'July',
+        'August', 'September', 'October',
+        'November', 'December'
+    ];
+    const calendar = new Calendar(document.getElementById('calendar'));
+
+    function updateFormattedMonth() {
+        let date = calendar.getDate();
+        document.getElementById('date').innerText = `${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
+    }
+
+    document.getElementById('right').onclick = () => {
+        calendar.nextMonth();
+        updateFormattedMonth();
+    };
+    document.getElementById('left').onclick = () => {
+        calendar.prevMonth();
+        updateFormattedMonth();
+    }
+</script>
+</html>
